@@ -1,0 +1,8 @@
+Django==1.10
+gunicorn==19.6.0
+Pillow==3.3.0
+pkg-resources==0.0.0
+whitenoise==3.2.1
+django-rest-framework-social-oauth2==1.0.4
+dj-database-url-0.4.2
+psycopg==2.6.2
