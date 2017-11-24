@@ -52,10 +52,20 @@ urlpatterns = [
     #/revoke-token (sign out)
     url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
 
-    #API
+    #API Customer
     url(r'^api/customer/restaurant/$', apis.customer_get_restaurant),
     url(r'^api/customer/meals/(?P<restaurant_id>\d+)/$', apis.customer_get_meals),
     url(r'^api/customer/order/add/$', apis.customer_add_order),
     url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+    url(r'^api/customer/driver/location/$', apis.customer_driver_location),
 
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    #API Driver
+    url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
+    url(r'^api/driver/order/pick/$', apis.driver_pick_order),
+    url(r'^api/driver/order/latest/$', apis.driver_get_latest_order),
+    url(r'^api/driver/order/complete/$', apis.driver_complete_order),
+    url(r'^api/driver/revenue/$', apis.driver_get_revenue),
+    url(r'^api/driver/location/update$', apis.driver_update_location),
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

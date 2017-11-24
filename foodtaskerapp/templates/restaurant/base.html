@@ -4,14 +4,21 @@
 
 {% block script %}
     <script>
-        $(document).ready(function () {
-            var now = new Date()
-            setInterval(function () {
+        $(document).ready(function() {
+            var now = new Date();
+            setInterval(function() {
                 $.ajax({
-                    url:'api/restaurant/order/notification/' + now.toISOString() + '/',
+                    url: '/api/restaurant/order/notification/' + now.toISOString() + '/',
                     method: 'GET',
+                    success: function(data) {
+                        if (data['notification'] === 0) {
+                            $('.badge').text('');
+                        } else {
+                            $('.badge').text(data['notification']);
+                        }
+                    }
                 })
-            })
+            }, 3000)
         })
 
     </script>
@@ -36,7 +43,10 @@
         <span class="text-uppercase">Dashboard</span>
 
         <a href="{% url 'restaurant-order' %}"
-           class="list-group-item {% if request.path == restaurant_order_url %} active {% endif %}"> Order </a>
+           class="list-group-item {% if request.path == restaurant_order_url %} active {% endif %}">
+            Order
+            <span class="badge"></span>
+        </a>
         <a href="{% url 'restaurant-meal' %}"
            class="list-group-item{% if request.path == restaurant_meal_url %} active {% endif %}"> Meal </a>
         <a href="{% url 'restaurant-report' %}"

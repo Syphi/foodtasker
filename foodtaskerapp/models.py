@@ -34,6 +34,7 @@ class Driver(models.Model):
     avatar = models.CharField(max_length=500)
     phone = models.CharField(max_length=500, blank=True)
     addres = models.CharField(max_length=500, blank=True)
+    locations = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
         return self.user.get_full_name()
